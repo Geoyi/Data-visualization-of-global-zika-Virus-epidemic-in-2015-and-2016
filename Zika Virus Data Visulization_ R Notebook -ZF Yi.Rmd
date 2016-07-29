@@ -22,7 +22,7 @@ zika[, c("Country", "Province") := tstrsplit(location, "-", fixed = TRUE)][]
 zika$report_date <-as.Date(zika$report_date, "%m/%d/%Y")
 
 zika$Year <- as.numeric(format(zika$report_date, format = "%Y"))
-
+zika$country[zika$country == 'United_States_Virgin_Islands'] <- 'Virgin_Islands'
 
 zika %>%
   filter(!is.na(Year)) %>%
@@ -41,6 +41,9 @@ ggplot(ZikaOc, aes(x= Country, y = cases)) +
 Globally reported zika cases, about 107, 619 obervations, were mainly occured in 12 countries: Argentina (2,091 obervations), Brazil (4,253), Colombia (86,889), Cominican Republican (5,716), Ecuador (796), El Salvador (1,000), Guatemala (516), Haiti (52), Mexico (2894), Nicaragua (125), Panama(148) and USA (2,962). 
 
 ```{r}
+data(countryExData,envir=environment(),package="rworldmap")
+str(countryExData)
+Test <- merge(countryExData, ZikaOc, by = "Country")
 sPDF <- joinCountryData2Map(Test, joinCode = "ISO3", nameJoinColumn = "ISO3V10")
 mapDevice() #create world map shaped window
 mapCountryData(sPDF, nameColumnToPlot='cases')
@@ -74,8 +77,8 @@ g1 <- ggplot(g_USA, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'USA: Reported Zika cases types')
+  labs(y = 'USA: Reported Zika cases', 
+       x = 'cases types')
 
 Mexico %>% 
   group_by(data_field, Year) %>% 
@@ -86,8 +89,8 @@ g2 <-ggplot(g_Mexico, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Mexico: Reported Zika cases types')
+  labs(y = 'Mexico: Reported Zika cases', 
+       x = 'cases types')
 
 Panama %>% 
   group_by(data_field, Year) %>% 
@@ -98,8 +101,8 @@ g3 <-ggplot(g_Panama, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Panama: Reported Zika cases types')
+  labs(y = 'Panama: Reported Zika cases', 
+       x = 'cases types')
 
 Nicaragua %>% 
   group_by(data_field, Year) %>% 
@@ -110,8 +113,8 @@ g4 <-ggplot(g_Nicaragua, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Nicaragua: Reported Zika cases types')
+  labs(y = 'Nicaragua: Reported Zika cases', 
+       x = 'cases types')
 
 Haiti %>% 
   group_by(data_field, Year) %>% 
@@ -122,8 +125,8 @@ g5 <-ggplot(g_Haiti, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Haiti: Reported Zika cases types')
+  labs(y = 'Haiti: Reported Zika cases', 
+       x = 'cases types')
 
 Guatemala %>% 
   group_by(data_field, Year) %>% 
@@ -134,8 +137,8 @@ g6 <-ggplot(g_Guatemala, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Guatemala: Reported Zika cases types')
+  labs(y = 'Guatemala: Reported Zika cases', 
+       x = 'cases types')
 
 El_salvador %>% 
   group_by(data_field, Year) %>% 
@@ -146,8 +149,8 @@ g7 <-ggplot(g_El_salvador, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'El_salvador: Reported Zika cases types')
+  labs(y = 'El_salvador: Reported Zika cases', 
+       x = 'cases types')
 
 Ecuador %>% 
   group_by(data_field, Year) %>% 
@@ -158,8 +161,8 @@ g8 <-ggplot(g_Ecuador, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Ecuador: Reported Zika cases types')
+  labs(y = 'g_Ecuador: Reported Zika cases', 
+       x = 'cases types')
 
 Dominican_republic %>% 
   group_by(data_field, Year) %>% 
@@ -170,8 +173,8 @@ g9 <-ggplot(g_Dominican_republic, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Dominican_republic: Reported Zika cases types')
+  labs(y = 'Dominican_republic: Reported Zika cases', 
+       x = 'cases types')
 
 Colombia %>% 
   group_by(data_field, Year) %>% 
@@ -182,8 +185,8 @@ g10 <-ggplot(g_Colombia, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Colombia: Reported Zika cases types')
+  labs(y = 'Colombia: Reported Zika cases', 
+       x = 'cases types')
 
 Argentina %>% 
   group_by(data_field, Year) %>% 
@@ -194,8 +197,8 @@ g11 <-ggplot(g_Argentina, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Argentina: Reported Zika cases types')
+  labs(y = 'Argentina: Reported Zika cases', 
+       x = 'cases types')
 
 Brazil %>% 
   group_by(data_field, Year) %>% 
@@ -206,8 +209,8 @@ g12 <-ggplot(g_Brazil, aes(x = data_field, y = Cases)) +
   facet_wrap(~ Year) +
   scale_fill_hue() +
   coord_flip() +
-  labs(y = 'Propotion of Biodiveristy loss', 
-       x = 'Brazil: Reported Zika cases types')
+  labs(y = 'Brazil: Reported Zika cases', 
+       x = 'cases types')
 
 g1 # Frome the cases in USA, most zika cases was reported from travel and local. Local cases mainly were reported from Puerto Rico, New York, Florida, and Virgin Island. 
 g2
