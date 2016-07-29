@@ -14,8 +14,8 @@ library(RColorBrewer)
 library(rworldmap)
 
 
-setwd("C:/Data Science Fundation with R/Kraggle/zika-virus-epidemic")
-list.files("C:/Data Science Fundation with R/Kraggle/zika-virus-epidemic")
+setwd(".../zika-virus-epidemic")
+list.files(".../zika-virus-epidemic")
 zika <- read.csv('cdc_zika.csv',header=TRUE, fill=TRUE,row.names=NULL)
 zika <- data.table(zika)
 zika[, c("Country", "Province") := tstrsplit(location, "-", fixed = TRUE)][]
