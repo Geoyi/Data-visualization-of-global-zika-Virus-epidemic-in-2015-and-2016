@@ -7,7 +7,7 @@
 ###Zika virus epidemic cases mainly happened in North and sourth American in 2015 and 2016. 
 
 ![rplot02](https://cloud.githubusercontent.com/assets/14057932/17258109/0413f098-558b-11e6-979f-324560122367.png)
-# Frome the cases in USA, most zika cases was reported from travel and local. Local cases mainly were reported from Puerto Rico, New York, Florida, and Virgin Island. 
+### Frome the cases in USA, most zika cases was reported from travel and local. Local cases mainly were reported from Puerto Rico, New York, Florida, and Virgin Island. 
 
 
 
